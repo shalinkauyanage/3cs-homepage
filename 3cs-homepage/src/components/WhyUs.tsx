@@ -1,0 +1,19 @@
+import { AWARDS, STATS, VALUES } from '../data/content'
+import { ArrowUpRight, Award, Fingerprint } from 'lucide-react'
+import CountUp from './CountUp'
+import Reveal from './Reveal'
+
+export default function WhyUs() {
+  return <section id="why" className="section-space relative isolate overflow-hidden">
+    <div aria-hidden className="pointer-events-none absolute -right-40 top-1/4 h-[34rem] w-[34rem] rounded-full bg-violet-600/[.09] blur-[120px]" />
+    <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
+      <Reveal><p className="eyebrow">03 / Why 3CS</p></Reveal>
+      <div className="mt-5 flex flex-col justify-between gap-6 lg:flex-row lg:items-end"><Reveal delay={.08}><h2 className="h2 max-w-3xl">A track record of <span className="text-gradient">moving forward.</span></h2></Reveal><Reveal delay={.16}><p className="max-w-sm text-sm leading-7 text-slate-400">Experience matters. So does the mindset to keep questioning, learning and building better.</p></Reveal></div>
+      <div className="mt-14 grid gap-4 md:grid-cols-3">
+        {STATS.map((stat, i) => <Reveal key={stat.label} delay={i * .08}><div className="stat-panel group relative h-full overflow-hidden rounded-[1.6rem] border border-white/10 bg-[#091322]/85 p-7 sm:p-8"><div aria-hidden className="absolute -right-8 -top-10 h-36 w-36 rounded-full border border-cyan-200/10 transition-transform duration-700 group-hover:scale-125" /><div aria-hidden className="absolute -right-1 -top-3 h-24 w-24 rounded-full border border-violet-200/10" /><p className="relative font-display text-5xl font-bold tracking-[-.06em] text-white sm:text-6xl">{stat.count ? <CountUp to={stat.value} suffix={stat.suffix} /> : stat.value}</p><p className="relative mt-4 max-w-[230px] text-xs leading-6 text-slate-400">{stat.label}</p><div className="mt-8 h-px w-full bg-gradient-to-r from-cyan-300/50 to-transparent" /></div></Reveal>)}
+      </div>
+      <Reveal delay={.1}><div className="award-panel mt-5 grid gap-6 rounded-[1.6rem] border border-violet-200/15 bg-gradient-to-r from-violet-500/[.09] via-[#0b1424] to-cyan-500/[.06] p-7 sm:p-9 md:grid-cols-[auto_1fr] md:items-center"><span className="flex h-14 w-14 items-center justify-center rounded-2xl border border-violet-200/20 bg-violet-300/10 text-violet-200"><Award className="h-7 w-7" /></span><div><div className="flex flex-wrap items-center gap-3"><h3 className="font-display text-xl font-semibold text-white">Recognised for digital excellence</h3><span className="rounded-full border border-violet-200/20 px-3 py-1 text-[9px] uppercase tracking-[.2em] text-violet-200">2010–2019</span></div><p className="mt-2 text-sm text-slate-400">Awards and recognition associated with the 3CS journey.</p><ul className="mt-5 flex flex-wrap gap-2">{AWARDS.map((award) => <li key={award} className="rounded-full border border-white/10 bg-white/[.035] px-3 py-2 text-[10px] text-slate-300">{award}</li>)}</ul></div></div></Reveal>
+      <div className="mt-16"><Reveal><div className="mb-7 flex items-center gap-3"><Fingerprint className="h-5 w-5 text-cyan-200" /><p className="eyebrow">The principles behind the work</p></div></Reveal><ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{VALUES.map((value, i) => <li key={value.title}><Reveal delay={(i % 3) * .06}><article className="value-card group h-full border-t border-white/10 py-6 transition-colors hover:border-cyan-200/50"><div className="flex items-center justify-between"><span className="font-display text-xs tracking-[.2em] text-cyan-300">0{i + 1}</span><ArrowUpRight className="h-4 w-4 text-slate-700 transition-all group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-cyan-200" /></div><h3 className="mt-5 font-display text-xl font-semibold text-white">{value.title}</h3><p className="mt-2 max-w-sm text-sm leading-6 text-slate-400">{value.text}</p></article></Reveal></li>)}</ul></div>
+    </div>
+  </section>
+}
